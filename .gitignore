@@ -1,0 +1,9 @@
+# All git ignore for Mac and IntelliJ
+
+# IntelliJ
+.idea/
+.DS_Store
+*.class
+
+bin/
+.settings/
