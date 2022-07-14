@@ -7,7 +7,6 @@ public class MenuController {
         for (String option : options) {
             System.out.println(option);
         }
-        System.out.print("Choose an option and press enter:");
     }
 
     //main menu
@@ -24,11 +23,12 @@ public class MenuController {
         //Display menu
         printMenu(mainMenuOptions);
 
-        //scanner to get user input
-        Scanner in = new Scanner(System.in);
+        //UserInput class to verify and get only valid user input
+        UserInput input = new UserInput();
 
-        //Assign user input to choice variable
-        choice = in.nextInt();
+        //Assign user input to choice variable using the readInteger function
+        choice = input.readInteger("Choose an option and press enter:",
+                "!Not a valid option", 1, 5);
 
         //To do after user selection
         while (choice!=0) {
@@ -48,9 +48,6 @@ public class MenuController {
                 case 5:
                     searchMenu();
                     break;
-                default:
-                    System.out.println("Not a valid option, please select from below list");
-                    mainMenu();
             }
         }
 
@@ -67,39 +64,111 @@ public class MenuController {
 
         //choice variable
         int choice;
-        //scanner to get user input
-        Scanner in = new Scanner(System.in);
 
-        //Assign user input to choice variable
-        choice = in.nextInt();
-        if(choice==0){
+        //UserInput class to verify and get only valid user input
+        UserInput input = new UserInput();
+
+        //Assign user input to choice variable using the readInteger function
+        choice = input.readInteger("Choose a song to play:",
+                "Choose a valid song or enter 0 to go back", 0, 1);
+
+        if (choice == 0) {
             mainMenu();
-            }
-        else {
-            System.out.println("playing song.....");
+        } else {
+            System.out.println("playing song ");
             songsMenu();
         }
+
+
     }
 
 
     public void artistsMenu() {
         System.out.println("You are in artistsMenu");
+        String[] artistMenuOptions = {"[1] Sonu", "[0] Back to main menu"};
 
+        //Display menu
+        printMenu(artistMenuOptions);
+
+        //choice variable
+        int choice;
+        //UserInput class to verify and get only valid user input
+        UserInput input = new UserInput();
+
+        //Assign user input to choice variable using the readInteger function
+        choice = input.readInteger("Choose an artist :",
+                "Choose a valid artist or enter 0 to go back", 0, 1);
+
+        if (choice == 0) {
+            mainMenu();
+        } else {
+            System.out.println("playing song with artist filter");
+            songsMenu();
+        }
     }
+
+
 
     public void albumsMenu() {
         System.out.println("You are in albumsMenu");
+        String[] albumsMenuOptions = {"[1] Best of Sonu", "[0] Back to main menu"};
 
+        //Display menu
+        printMenu(albumsMenuOptions);
+
+        //choice variable
+        int choice;
+
+        //UserInput class to verify and get only valid user input
+        UserInput input = new UserInput();
+
+        //Assign user input to choice variable using the readInteger function
+        choice = input.readInteger("Choose an album :",
+                "Choose a valid album or enter 0 to go back", 0, 1);
+
+        if (choice == 0) {
+            mainMenu();
+        } else {
+            System.out.println("playing song with album menu");
+            songsMenu();
+
+        }
     }
 
     public void genresMenu() {
         System.out.println("You are in genresMenu");
+        String[] genresMenuOptions = {"[1] Sad song of Sonu", "[0] Back to main menu"};
 
+        //Display menu
+        printMenu(genresMenuOptions);
+
+        //choice variable
+        int choice;
+        //UserInput class to verify and get only valid user input
+        UserInput input = new UserInput();
+
+        //Assign user input to choice variable using the readInteger function
+        choice = input.readInteger("Choose an genres :",
+                "Choose a valid genres or enter 0 to go back", 0, 1);
+
+        if (choice == 0) {
+            mainMenu();
+        } else {
+            System.out.println("playing song with genres menu");
+            songsMenu();
+        }
     }
+
+
     public void searchMenu() {
         System.out.println("You are in searchMenu");
 
+
+        }
+
     }
 
-}
+
+
+
 
