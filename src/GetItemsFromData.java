@@ -19,6 +19,49 @@ public class GetItemsFromData {
         return songsList;
     }
 
+    public List<String> getSongs(String type, String value) {
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        data = rd.getData();
+        List<String> songsList = new ArrayList<String>();
+        if(type.equalsIgnoreCase("artist")) {
+            for (int i = 0; i < data.size(); i++) {
+                String str, str1;
+                str = ((data.get(i).get(1)));
+                str1 = ((data.get(i).get(0)));
+                if (str.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(str1))
+                        songsList.add(str1);
+                }
+            }
+            return songsList;
+        } else if (type.equalsIgnoreCase("albums")) {
+            for (int i = 0; i < data.size(); i++) {
+                String str, str1;
+                str = ((data.get(i).get(2)));
+                str1 = ((data.get(i).get(0)));
+                if (str.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(str1))
+                        songsList.add(str1);
+                }
+            }
+            return songsList;
+
+        } else if (type.equalsIgnoreCase("genres")) {
+            for (int i = 0; i < data.size(); i++) {
+                String str, str1;
+                str = ((data.get(i).get(3)));
+                str1 = ((data.get(i).get(0)));
+                if (str.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(str1))
+                        songsList.add(str1);
+                }
+            }
+            return songsList;
+        }
+
+        return null;
+    }
+
 
     public List<String> getArtist() {
         ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
