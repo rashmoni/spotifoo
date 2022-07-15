@@ -1,27 +1,45 @@
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.InputMismatchException;
+import java.util.List;
 import java.util.Scanner;
 
 public class MenuController {
     //function to print menu
-    public void printMenu(String[] options) {
-        for (String option : options) {
-            System.out.println(option);
+    public void printMenu(List<String> options, String menuType) {
+        int i = 1;
+        if (menuType.equalsIgnoreCase("mainMenu")) {
+            for (String option : options) {
+                System.out.println("[" + i + "]" + " " + option);
+                i++;
+            }
+        } else {
+            for (String option : options) {
+                System.out.println("[" + i + "]" + " " + option);
+                i++;
+            }
+            System.out.println("[0] Go back to main menu");
         }
     }
 
     //main menu
-    public void mainMenu() {
+    public void mainMenu() throws IOException {
         //Message for main menu
         System.out.println("Main menu options:");
 
         //Options for main menu
-        String[] mainMenuOptions = {"[1] Songs", "[2] Artists", "[3] Albums", "[4] Genres", "[5] Search"};
+        List<String> mainMenuOptions = new ArrayList<>();
+        mainMenuOptions.add("Songs");
+        mainMenuOptions.add("Artists");
+        mainMenuOptions.add("Albums");
+        mainMenuOptions.add("Genres");
+        mainMenuOptions.add("Search");
 
         //choice variable
         int choice = 0;
 
         //Display menu
-        printMenu(mainMenuOptions);
+        printMenu(mainMenuOptions, "mainMenu");
 
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
@@ -31,7 +49,7 @@ public class MenuController {
                 "!Not a valid option", 1, 5);
 
         //To do after user selection
-        while (choice!=0) {
+        while (choice != 0) {
             switch (choice) {
                 case 1:
                     songsMenu();
@@ -54,13 +72,20 @@ public class MenuController {
 
     }
 
-    public void songsMenu() {
+    public void songsMenu() throws IOException {
+
         System.out.println("Songs menu Options : ");
         //Options for songs menu
-        String[] songsMenuOptions = {"[1] Ha ha Song","[0] Back to main menu" };
+        List<String> songsMenuOptionslist = new ArrayList<String>();
+
+        ReadDataFromTextFile rd = new ReadDataFromTextFile();
+        songsMenuOptionslist = rd.getData("songs");
+
+        //Conver songsMenuOptionslist to String array
+        // String[] songsMenuOptions = songsMenuOptionslist.toArray(new String[0]);
 
         //Display menu
-        printMenu(songsMenuOptions);
+        printMenu(songsMenuOptionslist, "songsMenu");
 
         //choice variable
         int choice;
@@ -79,16 +104,20 @@ public class MenuController {
             songsMenu();
         }
 
-
     }
 
-
-    public void artistsMenu() {
+    public void artistsMenu() throws IOException {
         System.out.println("You are in artistsMenu");
-        String[] artistMenuOptions = {"[1] Sonu", "[0] Back to main menu"};
+        //Options for songs menu
+        List<String> artistMenuOptionslist = new ArrayList<String>();
+
+        ReadDataFromTextFile rd = new ReadDataFromTextFile();
+        artistMenuOptionslist = rd.getData("artist");
+
+        //String[] artistMenuOptions = artistMenuOptionslist.toArray(new String[0]);
 
         //Display menu
-        printMenu(artistMenuOptions);
+        printMenu(artistMenuOptionslist, "artistMenu");
 
         //choice variable
         int choice;
@@ -103,18 +132,23 @@ public class MenuController {
             mainMenu();
         } else {
             System.out.println("playing song with artist filter");
-            songsMenu();
+            artistsMenu();
         }
     }
 
 
-
-    public void albumsMenu() {
+    public void albumsMenu() throws IOException {
         System.out.println("You are in albumsMenu");
-        String[] albumsMenuOptions = {"[1] Best of Sonu", "[0] Back to main menu"};
+        //Options for songs menu
+        List<String> albumMenuOptionslist = new ArrayList<String>();
+        ReadDataFromTextFile rd = new ReadDataFromTextFile();
+        albumMenuOptionslist = rd.getData("album");
+
+
+        //String[] albumsMenuOptions = albumMenuOptionslist.toArray(new String[0]);
 
         //Display menu
-        printMenu(albumsMenuOptions);
+        printMenu(albumMenuOptionslist, "albumsMenu");
 
         //choice variable
         int choice;
@@ -130,17 +164,23 @@ public class MenuController {
             mainMenu();
         } else {
             System.out.println("playing song with album menu");
-            songsMenu();
+            albumsMenu();
 
         }
     }
 
-    public void genresMenu() {
+    public void genresMenu() throws IOException {
         System.out.println("You are in genresMenu");
-        String[] genresMenuOptions = {"[1] Sad song of Sonu", "[0] Back to main menu"};
+
+        List<String> genresMenuOptionslist = new ArrayList<String>();
+        ReadDataFromTextFile rd = new ReadDataFromTextFile();
+        genresMenuOptionslist = rd.getData("genres");
+
+
+        // String[] genresMenuOptions = genresMenuOptionslist.toArray(new String[0]);
 
         //Display menu
-        printMenu(genresMenuOptions);
+        printMenu(genresMenuOptionslist, "genresMenu");
 
         //choice variable
         int choice;
@@ -155,7 +195,7 @@ public class MenuController {
             mainMenu();
         } else {
             System.out.println("playing song with genres menu");
-            songsMenu();
+            genresMenu();
         }
     }
 
@@ -164,9 +204,9 @@ public class MenuController {
         System.out.println("You are in searchMenu");
 
 
-        }
-
     }
+
+}
 
 
 

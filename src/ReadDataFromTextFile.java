@@ -1,33 +1,82 @@
-import java.io.BufferedReader;
-import java.io.FileNotFoundException;
-import java.io.FileReader;
-import java.io.IOException;
+import java.io.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
+import java.util.Scanner;
 
 public class ReadDataFromTextFile {
 
 
-    public String[] getSongs() throws IOException {
+    private static Scanner file;
+    static int rows;
 
+    public List getData(String data) throws FileNotFoundException {
 
-        List<String> sg = new ArrayList<String>();
+        String type = data;
 
-        // Using FileReader/ BufferReader
-        FileReader fr = new FileReader("/Users/rashmonidey/Desktop/spotifoo/assets/data.txt");
+        //sigle dimension array
+        List<String> list = new ArrayList<String>();
 
-        BufferedReader br = new BufferedReader(fr);
-        String str;
+        //2d  array list for reading from file
+        ArrayList<ArrayList<String>> biD = new ArrayList<ArrayList<String>>();
 
-        while ((str=br.readLine()) !=null){
-            String[] sg1 = new String[1];
-            sg1 = str.split(",");
-            sg.add(sg1[0]);
+        file = new Scanner(new File("/Users/rashmonidey/Desktop/spotifoo/assets/data.txt"));
+
+        while (file.hasNextLine()) {
+            ArrayList<String> line = new ArrayList<String>();
+            final String nextLine = file.nextLine();
+            final String[] items = nextLine.split(",");
+
+            for (int i = 0; i < items.length; i++) {
+                line.add(items[i]);
+            }
+            biD.add(line);
+            rows++;
+            Arrays.fill(items, null); // to clear out the 'items' array
         }
-        br.close();
-        String[] songs = new String [sg.size()];
-        sg.toArray(songs);
 
-        return songs;
+
+        if (type.equalsIgnoreCase("songs")) {
+            List<String> songsList = new ArrayList<String>();
+            for (int i = 0; i < biD.size(); i++) {
+                String str;
+                str = ((biD.get(i).get(0)));
+                if (!songsList.contains(str))
+                    songsList.add(str);
+            }
+            return songsList;
+        } else if (type.equalsIgnoreCase("artist")) {
+            List<String> artistList = new ArrayList<String>();
+            for (int i = 0; i < biD.size(); i++) {
+                String str;
+                str = ((biD.get(i).get(1)));
+                if (!artistList.contains(str))
+                    artistList.add(str);
+            }
+            return artistList;
+
+        } else if (type.equalsIgnoreCase("album")) {
+            List<String> albumList = new ArrayList<String>();
+            for (int i = 0; i < biD.size(); i++) {
+                String str;
+                str = ((biD.get(i).get(2)));
+                if (!albumList.contains(str))
+                    albumList.add(str);
+            }
+            return albumList;
+
+        } else if (type.equalsIgnoreCase("genres")) {
+            List<String> genresList = new ArrayList<String>();
+            for (int i = 0; i < biD.size(); i++) {
+                String str;
+                str = ((biD.get(i).get(3)));
+                if (!genresList.contains(str))
+                    genresList.add(str);
+            }
+            return genresList;
+
+        }
+        return null;
     }
 }
+
