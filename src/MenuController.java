@@ -23,7 +23,7 @@ public class MenuController {
     }
 
     //main menu
-    public void mainMenu() throws IOException {
+    public void mainMenu()  {
         //Message for main menu
         System.out.println("Main menu options:");
 
@@ -72,14 +72,14 @@ public class MenuController {
 
     }
 
-    public void songsMenu() throws IOException {
+    public void songsMenu() {
 
         System.out.println("Songs menu Options : ");
         //Options for songs menu
         List<String> songsMenuOptionslist = new ArrayList<String>();
 
-        ReadDataFromTextFile rd = new ReadDataFromTextFile();
-        songsMenuOptionslist = rd.getData("songs");
+        GetItemsFromData songsList = new GetItemsFromData();
+        songsMenuOptionslist = songsList.getSongs();
 
         //Conver songsMenuOptionslist to String array
         // String[] songsMenuOptions = songsMenuOptionslist.toArray(new String[0]);
@@ -106,13 +106,13 @@ public class MenuController {
 
     }
 
-    public void artistsMenu() throws IOException {
+    public void artistsMenu() {
         System.out.println("You are in artistsMenu");
         //Options for songs menu
         List<String> artistMenuOptionslist = new ArrayList<String>();
 
-        ReadDataFromTextFile rd = new ReadDataFromTextFile();
-        artistMenuOptionslist = rd.getData("artist");
+        GetItemsFromData artistsList = new GetItemsFromData();
+        artistMenuOptionslist = artistsList.getArtist();
 
         //String[] artistMenuOptions = artistMenuOptionslist.toArray(new String[0]);
 
@@ -137,12 +137,13 @@ public class MenuController {
     }
 
 
-    public void albumsMenu() throws IOException {
+    public void albumsMenu() {
         System.out.println("You are in albumsMenu");
         //Options for songs menu
         List<String> albumMenuOptionslist = new ArrayList<String>();
-        ReadDataFromTextFile rd = new ReadDataFromTextFile();
-        albumMenuOptionslist = rd.getData("album");
+
+        GetItemsFromData albumsList = new GetItemsFromData();
+        albumMenuOptionslist = albumsList.getAlbums();
 
 
         //String[] albumsMenuOptions = albumMenuOptionslist.toArray(new String[0]);
@@ -169,12 +170,13 @@ public class MenuController {
         }
     }
 
-    public void genresMenu() throws IOException {
+    public void genresMenu() {
         System.out.println("You are in genresMenu");
 
         List<String> genresMenuOptionslist = new ArrayList<String>();
-        ReadDataFromTextFile rd = new ReadDataFromTextFile();
-        genresMenuOptionslist = rd.getData("genres");
+
+        GetItemsFromData genresList = new GetItemsFromData();
+        genresMenuOptionslist = genresList.getGenres();
 
 
         // String[] genresMenuOptions = genresMenuOptionslist.toArray(new String[0]);
