@@ -6,8 +6,8 @@ public class Main {
         System.out.println("Welcome to Spotifoo music player!");
         System.out.println();
 
-        MenuController menu = new MenuController();
-        menu.mainMenu();
+        MenuController application = new MenuController();
+        application.mainMenu();
         /*ReadDataFromTextFile rf= new ReadDataFromTextFile();
         String[] songs = rf.getSongs();
 

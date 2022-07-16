@@ -88,9 +88,10 @@ public class MenuController {
         if (choice == 0) {
             mainMenu();
         } else {
-            System.out.println("playing song ");
-            songsMenu();
-
+            PlaySong play = new PlaySong();
+            play.playSong(songsMenuOptionlist.get(choice-1));
+            System.out.println("playing song "+songsMenuOptionlist.get(choice-1));
+            //songsMenu();
         }
 
     }
@@ -121,7 +122,7 @@ public class MenuController {
             printMenu(artistSongsOptionslist, "artistMenu");
             //Assign user input to choice variable using the readInteger function
             choice = input.readInteger("Choose a song to play or select 0 to go back:",
-                    "Choose a valid artist or enter 0 to go back", 0, artistMenuOptionslist.size());
+                    "Choose a valid artist or enter 0 to go back", 0, artistSongsOptionslist.size());
         }
         mainMenu();
     }
