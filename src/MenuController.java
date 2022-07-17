@@ -69,6 +69,7 @@ public class MenuController {
         GetItemsFromData songsList = new GetItemsFromData();
         songsMenuOptionlist = songsList.getSongs();
 
+
         //Display menu
         printMenu(songsMenuOptionlist, "songsMenu");
 
@@ -86,9 +87,9 @@ public class MenuController {
             mainMenu();
         } else {
             PlaySong play = new PlaySong();
-            play.playSong(songsMenuOptionlist.get(choice - 1));
-            System.out.println("playing song " + songsMenuOptionlist.get(choice - 1));
-            //songsMenu();
+            String albumName = songsList.getAlbumsForSong(songsMenuOptionlist.get(choice - 1));
+            play.playSong(songsMenuOptionlist.get(choice - 1), albumName);
+
         }
 
     }
@@ -126,8 +127,8 @@ public class MenuController {
                 mainMenu();
             } else {
                 PlaySong play = new PlaySong();
-                play.playSong(artistSongsOptionslist.get(choice - 1));
-                System.out.println("playing song " + artistSongsOptionslist.get(choice - 1));
+                String albumName = artistsList.getAlbumsForSong(artistMenuOptionslist.get(choice - 1));
+                play.playSong(artistSongsOptionslist.get(choice - 1),albumName);
             }
         } else
             mainMenu();
@@ -166,8 +167,8 @@ public class MenuController {
                 mainMenu();
             } else {
                 PlaySong play = new PlaySong();
-                play.playSong(albumsSongsOptionslist.get(choice - 1));
-                System.out.println("playing song " + albumsSongsOptionslist.get(choice - 1));
+                String albumName = albumsList.getAlbumsForSong(albumMenuOptionslist.get(choice - 1));
+                play.playSong(albumsSongsOptionslist.get(choice - 1),albumName);
             }
         } else
             mainMenu();
@@ -207,8 +208,8 @@ public class MenuController {
                 mainMenu();
             } else {
                 PlaySong play = new PlaySong();
-                play.playSong(genresSongsOptionslist.get(choice - 1));
-                System.out.println("playing song " + genresSongsOptionslist.get(choice - 1));
+                String albumName = genresList.getAlbumsForSong(genresMenuOptionslist.get(choice - 1));
+                play.playSong(genresSongsOptionslist.get(choice - 1),albumName);
             }
         }
         mainMenu();
@@ -237,8 +238,9 @@ public class MenuController {
             mainMenu();
         } else {
             PlaySong play = new PlaySong();
-            play.playSong(searchedSongslist.get(choice - 1));
-            System.out.println("playing song " + searchedSongslist.get(choice - 1));
+            GetItemsFromData dataForAlbum = new GetItemsFromData();
+            String albumName = dataForAlbum.getAlbumsForSong(searchedSongslist.get(choice - 1));
+            play.playSong(searchedSongslist.get(choice - 1),albumName);
         }
 
 

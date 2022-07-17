@@ -103,4 +103,19 @@ public class GetItemsFromData {
         return genresList;
     }
 
+    public String getAlbumsForSong(String song)  {
+        ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
+        data = rd.getData();
+        String album= null;
+        for (int i = 0; i < data.size(); i++) {
+            String str = ((data.get(i).get(0)));
+            if (str.equalsIgnoreCase(song)) {
+                album = data.get(i).get(2);
+            }
+        }
+        return album;
+    }
+
+
+
 }
