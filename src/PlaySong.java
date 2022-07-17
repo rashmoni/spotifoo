@@ -4,6 +4,7 @@ import java.io.File;
 public class PlaySong {
         public void playSong(String songName) {
             // songName = "andy-you-are-a-star.mp3";
+            songName=songName.replace(" ","-");
             String pathToMp3 = "/Users/rashmonidey/Desktop/spotifoo/assets/songs/"+songName+".mp3";
             System.out.println(pathToMp3);
             try {
@@ -16,7 +17,7 @@ public class PlaySong {
                 }
                 Desktop desktop = Desktop.getDesktop();
                 if (file.exists())         //checks file exists or not
-                    desktop.open(file);              //opens the specified file
+                    desktop.open(file);    //opens the specified file
             } catch (Exception e) {
                 e.printStackTrace();
             }

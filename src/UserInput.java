@@ -34,4 +34,17 @@ public class UserInput {
         return num;
     }
 
+    public String readText(String promptMsg, String errorMsg){
+        String strInput;
+        boolean valid = false;
+
+            //prompt user for input
+            System.out.print(promptMsg);
+
+            //User input from keyboard
+            strInput = in.nextLine();
+
+        return strInput;
+    }
+
 }
