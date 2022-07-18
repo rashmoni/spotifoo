@@ -16,6 +16,8 @@ public class Search {
 
 
     public List<String> searchSongs() {
+        ClearScreen cls = new ClearScreen();
+        cls.ClearConsole();
         UserInput input = new UserInput();
 
         // All Songs list
@@ -27,8 +29,7 @@ public class Search {
         List<String> searchedSongList = new ArrayList<>();
 
         while (searchedSongList.size() == 0) {
-            String searchText = input.readText("Enter song name you want to search: ",
-                    "Song not found please try again");
+            String searchText = input.readText("Enter song name you want to search:");
 
             for (String element : allSongList) {
                 if (element.toLowerCase().contains(searchText.toLowerCase())) {

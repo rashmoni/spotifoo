@@ -8,3 +8,5 @@
 
 bin/
 .settings/
+/out
+src/META-INF/

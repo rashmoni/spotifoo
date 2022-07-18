@@ -2,9 +2,6 @@ import java.io.IOException;
 
 public class Main {
     public static void main(String[] args) throws IOException {
-        //Welcome message
-        System.out.println("Welcome to Spotifoo music player!");
-        System.out.println();
 
         MenuController application = new MenuController();
         application.mainMenu();

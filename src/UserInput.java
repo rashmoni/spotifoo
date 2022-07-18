@@ -22,8 +22,11 @@ public class UserInput {
             //try block to convert string to int
             try{
                 num = Integer.parseInt(strInput);
+
+                //check if the input is in valid range
                 if(num>=low && num <= high)
                   valid=true;
+
                 else
                     System.out.println(errorMsg);
             }
@@ -34,7 +37,7 @@ public class UserInput {
         return num;
     }
 
-    public String readText(String promptMsg, String errorMsg){
+    public String readText(String promptMsg){
         String strInput;
         boolean valid = false;
 

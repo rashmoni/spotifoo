@@ -11,8 +11,7 @@ public class GetItemsFromData {
         data = rd.getData();
         List<String> songsList = new ArrayList<String>();
         for (int i = 0; i < data.size(); i++) {
-            String str;
-            str = ((data.get(i).get(0)));
+            String str = ((data.get(i).get(0)));
             if (!songsList.contains(str))
                 songsList.add(str);
         }
@@ -25,35 +24,35 @@ public class GetItemsFromData {
         List<String> songsList = new ArrayList<String>();
         if(type.equalsIgnoreCase("artist")) {
             for (int i = 0; i < data.size(); i++) {
-                String str, str1;
-                str = ((data.get(i).get(1)));
-                str1 = ((data.get(i).get(0)));
-                if (str.equalsIgnoreCase(value)) {
-                    if (!songsList.contains(str1))
-                        songsList.add(str1);
+                String strArtist, strSong;
+                strArtist = ((data.get(i).get(1)));
+                strSong = ((data.get(i).get(0)));
+                if (strArtist.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(strSong))
+                        songsList.add(strSong);
                 }
             }
             return songsList;
         } else if (type.equalsIgnoreCase("albums")) {
             for (int i = 0; i < data.size(); i++) {
-                String str, str1;
-                str = ((data.get(i).get(2)));
-                str1 = ((data.get(i).get(0)));
-                if (str.equalsIgnoreCase(value)) {
-                    if (!songsList.contains(str1))
-                        songsList.add(str1);
+                String strAlbum, strSong;
+                strAlbum = ((data.get(i).get(2)));
+                strSong = ((data.get(i).get(0)));
+                if (strAlbum.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(strSong))
+                        songsList.add(strSong);
                 }
             }
             return songsList;
 
         } else if (type.equalsIgnoreCase("genres")) {
             for (int i = 0; i < data.size(); i++) {
-                String str, str1;
-                str = ((data.get(i).get(3)));
-                str1 = ((data.get(i).get(0)));
-                if (str.equalsIgnoreCase(value)) {
-                    if (!songsList.contains(str1))
-                        songsList.add(str1);
+                String strGenres, strSongs;
+                strGenres = ((data.get(i).get(3)));
+                strSongs = ((data.get(i).get(0)));
+                if (strGenres.equalsIgnoreCase(value)) {
+                    if (!songsList.contains(strSongs))
+                        songsList.add(strSongs);
                 }
             }
             return songsList;
@@ -103,19 +102,22 @@ public class GetItemsFromData {
         return genresList;
     }
 
-    public String getAlbumsForSong(String song)  {
+    public List<String> getFilesForSong(String song)  {
         ArrayList<ArrayList<String>> data = new ArrayList<ArrayList<String>>();
         data = rd.getData();
-        String album= null;
+        List<String> fileList = new ArrayList<String>();
         for (int i = 0; i < data.size(); i++) {
-            String str = ((data.get(i).get(0)));
-            if (str.equalsIgnoreCase(song)) {
-                album = data.get(i).get(2);
+            String songString = ((data.get(i).get(0)));
+            String mp3 = ((data.get(i).get(4)));
+            String png = ((data.get(i).get(5)));
+            if (songString.equalsIgnoreCase(song)) {
+                if (!fileList.contains(mp3))
+                fileList.add(mp3);
+                if (!fileList.contains(png))
+                fileList.add(png);
             }
         }
-        return album;
+        return fileList;
     }
-
-
 
 }
