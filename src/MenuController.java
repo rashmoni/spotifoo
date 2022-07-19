@@ -99,7 +99,7 @@ public class MenuController {
             fileList = songsList.getFilesForSong(songsMenuOptionlist.get(choice - 1));
 
             PlaySong play = new PlaySong();
-            play.playSong(songsMenuOptionlist.get(choice - 1), (String)fileList.get(0), (String)fileList.get(1));
+            play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
         }
 
@@ -141,7 +141,7 @@ public class MenuController {
                 fileList = artistsList.getFilesForSong(artistSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
-                play.playSong(artistSongsOptionslist.get(choice - 1), (String)fileList.get(0), (String)fileList.get(1));
+                play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
             }
         } else
@@ -185,7 +185,7 @@ public class MenuController {
                 fileList = albumsList.getFilesForSong(albumsSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
-                play.playSong(albumsSongsOptionslist.get(choice - 1), (String)fileList.get(0), (String)fileList.get(1));
+                play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
             }
         } else
@@ -228,7 +228,7 @@ public class MenuController {
                 fileList = genresList.getFilesForSong(genresSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
-                play.playSong(genresSongsOptionslist.get(choice - 1), (String)fileList.get(0), (String)fileList.get(1));
+                play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
             }
         }
@@ -262,7 +262,7 @@ public class MenuController {
             GetItemsFromData songsList = new GetItemsFromData();
             fileList = songsList.getFilesForSong(searchedSongslist.get(choice - 1));
             PlaySong play = new PlaySong();
-            play.playSong(searchedSongslist.get(choice - 1), (String)fileList.get(0), (String)fileList.get(1));
+            play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
         }
 

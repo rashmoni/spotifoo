@@ -1,15 +1,9 @@
-import java.io.IOException;
 
 public class Main {
-    public static void main(String[] args) throws IOException {
+    public static void main(String[] args)  {
 
+        //Create object of menucontroller and initiate mainMenu
         MenuController application = new MenuController();
         application.mainMenu();
-        /*ReadDataFromTextFile rf= new ReadDataFromTextFile();
-        String[] songs = rf.getSongs();
-
-        for(int i=0;i< songs.length;i++){
-            System.out.println(songs[i]);
-        }*/
     }
 }

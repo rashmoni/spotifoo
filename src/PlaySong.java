@@ -1,22 +1,17 @@
-import javax.imageio.IIOException;
 import java.awt.*;
 import java.io.File;
-import java.io.UnsupportedEncodingException;
+
 
 public class PlaySong {
-    public void playSong(String songName, String mp3, String png) {
 
-        /*/modify song name to generate file path
-        songName = songName.toLowerCase().replace(" ", "-");
-
-        //modify album nane to generate file path
-        albumName = albumName.toLowerCase().replace(" ", "-");*/
+    // This methods plays song and also displays the image
+    public void playSong(String mp3, String png) {
 
         //Generate file paths
         String pathToMp3 = System.getProperty("user.dir") + "/assets/songs/" + mp3;
         String pathToPng = System.getProperty("user.dir") + "/assets/albums/" + png;
 
-        //Default image path
+        //Default image file path
         String pathToDefaultimage = System.getProperty("user.dir") + "/assets/no-picture.png";
 
         try {

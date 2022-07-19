@@ -5,6 +5,8 @@ public class UserInput {
     UserInput(){
         in = new Scanner(System.in);
     }
+
+    //this method forces user to input only valid integer within required range
     public int readInteger(String promptMsg, String errorMsg, int low, int high){
         int num = 0;
         String strInput;
@@ -36,10 +38,9 @@ public class UserInput {
         }
         return num;
     }
-
+    //this method returns text input for search
     public String readText(String promptMsg){
         String strInput;
-        boolean valid = false;
 
             //prompt user for input
             System.out.print(promptMsg);
