@@ -13,15 +13,15 @@ public class MenuController {
         System.out.println("Welcome to Spotifoo music player!");
         System.out.println();
 
-        System.out.println(menuType);
-
         int i = 1;
         if (menuType.equalsIgnoreCase("mainMenu")) {
+            System.out.println("Main menu options:");
             for (String option : options) {
                 System.out.println("[" + i + "]" + " " + option);
                 i++;
             }
         } else {
+            System.out.println(menuType);
             for (String option : options) {
                 System.out.println("[" + i + "]" + " " + option);
                 i++;
@@ -41,11 +41,11 @@ public class MenuController {
         mainMenuOptions.add("Genres");
         mainMenuOptions.add("Search");
 
-        //choice variable
-        int choice;
-
         //Display menu
         printMenu(mainMenuOptions, "mainMenu");
+
+        //choice variable
+        int choice;
 
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
@@ -79,7 +79,7 @@ public class MenuController {
 
 
         //Display menu
-        printMenu(songsMenuOptionlist, "songsMenu");
+        printMenu(songsMenuOptionlist, "Songs menu:");
 
         //choice variable
         int choice;
@@ -89,7 +89,7 @@ public class MenuController {
 
         //Assign user input to choice variable using the readInteger function
         choice = input.readInteger("Choose a song to play:",
-                "Choose a valid song or enter 0 to go back", 0, songsMenuOptionlist.size());
+                "\u26A0 Choose a valid song or enter 0 to go back", 0, songsMenuOptionlist.size());
 
         if (choice == 0) {
             mainMenu();
@@ -117,14 +117,14 @@ public class MenuController {
         artistMenuOptionslist = artistsList.getArtist();
 
         //Display menu
-        printMenu(artistMenuOptionslist, "artistMenu");
+        printMenu(artistMenuOptionslist, "artist available:");
 
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
 
         //Assign user input to choice variable using the readInteger function
         int choice = input.readInteger("Choose an artist :",
-                "Choose a valid artist or enter 0 to go back", 0, artistMenuOptionslist.size());
+                "\u26A0 Choose a valid artist or enter 0 to go back", 0, artistMenuOptionslist.size());
 
         if (choice != 0) {
             artistSongsOptionslist = artistsList.getSongs("artist", artistMenuOptionslist.get(choice - 1));
@@ -162,7 +162,7 @@ public class MenuController {
         albumMenuOptionslist = albumsList.getAlbums();
 
         //Display menu
-        printMenu(albumMenuOptionslist, "albumsMenu");
+        printMenu(albumMenuOptionslist, "album available:");
 
 
         //UserInput class to verify and get only valid user input
@@ -170,7 +170,7 @@ public class MenuController {
 
         //Assign user input to choice variable using the readInteger function
         int choice = input.readInteger("Choose an album or enter 0 to go back:",
-                "Choose a valid album or enter 0 to go back", 0, albumMenuOptionslist.size());
+                "\u26A0 Choose a valid album or enter 0 to go back", 0, albumMenuOptionslist.size());
 
         if (choice != 0) {
             albumsSongsOptionslist = albumsList.getSongs("albums", albumMenuOptionslist.get(choice - 1));
@@ -203,7 +203,7 @@ public class MenuController {
         genresMenuOptionslist = genresList.getGenres();
 
         //Display menu
-        printMenu(genresMenuOptionslist, "genresMenu");
+        printMenu(genresMenuOptionslist, "genre available");
 
         //choice variable
         int choice;
@@ -213,7 +213,7 @@ public class MenuController {
 
         //Assign user input to choice variable using the readInteger function
         choice = input.readInteger("Choose an genres :",
-                "Choose a valid genres or enter 0 to go back", 0, genresMenuOptionslist.size());
+                "\u26A0 Choose a valid genres or enter 0 to go back", 0, genresMenuOptionslist.size());
 
         if (choice != 0) {
             genresSongsOptionslist = genresList.getSongs("genres", genresMenuOptionslist.get(choice - 1));
@@ -244,7 +244,7 @@ public class MenuController {
 
 
         if (searchedSongslist!=null) {
-            printMenu(searchedSongslist, "searchMenu");
+            printMenu(searchedSongslist, "Search for a song:");
         }
         else mainMenu();
 
@@ -253,7 +253,7 @@ public class MenuController {
 
         //Assign user input to choice variable using the readInteger function
         int choice = input.readInteger("Choose a song to play or select 0 to go back:",
-                "Invalid Entry, choose a song or enter 0 to go back", 0, searchedSongslist.size());
+                "\u26A0 Invalid Entry, choose a song or enter 0 to go back", 0, searchedSongslist.size());
         if (choice == 0) {
             mainMenu();
         } else {
