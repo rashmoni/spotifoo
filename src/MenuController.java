@@ -2,34 +2,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class MenuController {
-    //function to print menu
-    public void printMenu(List<String> options, String menuType) {
-
-        //clear the screen before any menu
-        ClearScreen cls = new ClearScreen();
-        cls.ClearConsole();
-
-        //Welcome message
-        System.out.println("Welcome to Spotifoo music player!");
-        System.out.println();
-
-        int i = 1;
-        if (menuType.equalsIgnoreCase("mainMenu")) {
-            System.out.println("Main menu options:");
-            for (String option : options) {
-                System.out.println("[" + i + "]" + " " + option);
-                i++;
-            }
-        } else {
-            System.out.println(menuType);
-            for (String option : options) {
-                System.out.println("[" + i + "]" + " " + option);
-                i++;
-            }
-            System.out.println("[0] Go back to main menu");
-        }
-    }
-
     //main menu
     public void mainMenu() {
 
@@ -44,14 +16,11 @@ public class MenuController {
         //Display menu
         printMenu(mainMenuOptions, "mainMenu");
 
-        //choice variable
-        int choice;
-
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
 
         //Assign user input to choice variable using the readInteger function
-        choice = input.readInteger("Choose an option and press enter: ",
+        int choice = input.readInteger("Choose an option and press enter: ",
                 "\u26A0 Not a valid option", 1, 5);
 
         //To do after user selection
@@ -81,35 +50,32 @@ public class MenuController {
         //Print menu
         printMenu(songsMenuOptionlist, "Songs menu:");
 
-        //choice variable
-        int choice;
-
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
 
         //Assign user input to choice variable using the readInteger function
-        choice = input.readInteger("Choose a song to play:",
+        int choice = input.readInteger("Choose a song to play:",
                 "\u26A0 Choose a valid song or enter 0 to go back", 0, songsMenuOptionlist.size());
 
         if (choice == 0) {
             mainMenu();
         } else {
 
-            List<String> fileList = new ArrayList();
-            fileList = songsList.getFilesForSong(songsMenuOptionlist.get(choice - 1));
+            List<String> fileList = songsList.getFilesForSong(songsMenuOptionlist.get(choice - 1));
 
             PlaySong play = new PlaySong();
             boolean playSuccess = play.playSong(fileList.get(0), fileList.get(1));
 
-            while (playSuccess==false){
+            while (!playSuccess) {
                 System.out.println("\u274c Cannot play this song, choose another song");
                 choice = input.readInteger("Choose a song to play:",
                         "\u26A0 Choose a valid song or enter 0 to go back", 0, songsMenuOptionlist.size());
                 if (choice == 0) {
                     mainMenu();
+                } else {
+                    fileList = songsList.getFilesForSong(songsMenuOptionlist.get(choice - 1));
+                    playSuccess = play.playSong(fileList.get(0), fileList.get(1));
                 }
-                else fileList = songsList.getFilesForSong(songsMenuOptionlist.get(choice - 1));
-                 playSuccess = play.playSong(fileList.get(0), fileList.get(1));
             }
 
         }
@@ -147,23 +113,21 @@ public class MenuController {
             if (choice == 0) {
                 mainMenu();
             } else {
-                List<String> fileList = new ArrayList();
-                fileList = artistsList.getFilesForSong(artistSongsOptionslist.get(choice - 1));
+                List<String> fileList = artistsList.getFilesForSong(artistSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
                 boolean playSuccess = play.playSong(fileList.get(0), fileList.get(1));
-                while (playSuccess==false){
+                while (!playSuccess) {
                     System.out.println("\u274c Cannot play this song, choose another song");
                     choice = input.readInteger("Choose a song to play:",
                             "\u26A0 Choose a valid song or enter 0 to go back", 0, artistSongsOptionslist.size());
                     if (choice == 0) {
                         mainMenu();
+                    } else {
+                        fileList = artistsList.getFilesForSong(artistSongsOptionslist.get(choice - 1));
+                        playSuccess = play.playSong(fileList.get(0), fileList.get(1));
                     }
-                    else fileList = artistsList.getFilesForSong(artistSongsOptionslist.get(choice - 1));
-                    playSuccess = play.playSong(fileList.get(0), fileList.get(1));
                 }
-
-                //while loop for song selection
             }
         } else
             mainMenu();
@@ -171,7 +135,6 @@ public class MenuController {
 
 
     public void albumsMenu() {
-
 
         //Options for songs menu
         List<String> albumMenuOptionslist;
@@ -202,19 +165,21 @@ public class MenuController {
             if (choice == 0) {
                 mainMenu();
             } else {
-                List<String> fileList = new ArrayList();
-                fileList = albumsList.getFilesForSong(albumsSongsOptionslist.get(choice - 1));
+                List<String> fileList = albumsList.getFilesForSong(albumsSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
-                boolean playSuccess = play.playSong((String)fileList.get(0), (String)fileList.get(1));
-                while (playSuccess==false) {
+                boolean playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+                while (!playSuccess) {
                     System.out.println("\u274c Cannot play this song, choose another song");
                     choice = input.readInteger("Choose a song to play:",
                             "\u26A0 Choose a valid song or enter 0 to go back", 0, albumsSongsOptionslist.size());
                     if (choice == 0) {
                         mainMenu();
-                    } else fileList = albumsList.getFilesForSong(albumsSongsOptionslist.get(choice - 1));
-                    playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+                    } else {
+                        fileList = albumsList.getFilesForSong(albumsSongsOptionslist.get(choice - 1));
+                        playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+                    }
+
                 }
             }
         } else
@@ -234,14 +199,12 @@ public class MenuController {
         //Display menu
         printMenu(genresMenuOptionslist, "genre available");
 
-        //choice variable
-        int choice;
 
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
 
         //Assign user input to choice variable using the readInteger function
-        choice = input.readInteger("Choose an genres :",
+        int choice = input.readInteger("Choose an genres :",
                 "\u26A0 Choose a valid genres or enter 0 to go back", 0, genresMenuOptionslist.size());
 
         if (choice != 0) {
@@ -253,24 +216,24 @@ public class MenuController {
             if (choice == 0) {
                 mainMenu();
             } else {
-                List <String>fileList = new ArrayList();
-                fileList = genresList.getFilesForSong(genresSongsOptionslist.get(choice - 1));
+                List<String> fileList = genresList.getFilesForSong(genresSongsOptionslist.get(choice - 1));
 
                 PlaySong play = new PlaySong();
                 boolean playSuccess = play.playSong(fileList.get(0), fileList.get(1));
-                while (playSuccess==false) {
+                while (!playSuccess) {
                     System.out.println("\u274c Cannot play this song, choose another song");
                     choice = input.readInteger("Choose a song to play:",
                             "\u26A0 Choose a valid song or enter 0 to go back", 0, genresSongsOptionslist.size());
                     if (choice == 0) {
                         mainMenu();
-                    } else fileList = genresList.getFilesForSong(genresSongsOptionslist.get(choice - 1));
-                    playSuccess = play.playSong(fileList.get(0), fileList.get(1));
-                    play.playSong((String) fileList.get(0), (String) fileList.get(1));
+                    } else {
+                        fileList = genresList.getFilesForSong(genresSongsOptionslist.get(choice - 1));
+                        playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+                    }
+
                 }
             }
-        }
-        else mainMenu();
+        } else mainMenu();
     }
 
 
@@ -280,11 +243,9 @@ public class MenuController {
 
         List<String> searchedSongslist = search1.searchSongs();
 
-
-        if (searchedSongslist!=null) {
+        if (searchedSongslist != null) {
             printMenu(searchedSongslist, "Search for a song:");
-        }
-        else mainMenu();
+        } else mainMenu();
 
         //UserInput class to verify and get only valid user input
         UserInput input = new UserInput();
@@ -295,28 +256,56 @@ public class MenuController {
         if (choice == 0) {
             mainMenu();
         } else {
-            List<String> fileList = new ArrayList();
-
             GetItemsFromData songsList = new GetItemsFromData();
-            fileList = songsList.getFilesForSong(searchedSongslist.get(choice - 1));
+            List<String> fileList = songsList.getFilesForSong(searchedSongslist.get(choice - 1));
             PlaySong play = new PlaySong();
-            boolean playSuccess = play.playSong((String)fileList.get(0), (String)fileList.get(1));
-            while (playSuccess==false) {
+            boolean playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+            while (!playSuccess) {
                 System.out.println("\u274c Cannot play this song, choose another song");
                 choice = input.readInteger("Choose a song to play:",
                         "\u26A0 Choose a valid song or enter 0 to go back", 0, searchedSongslist.size());
                 if (choice == 0) {
                     mainMenu();
-                } else fileList = songsList.getFilesForSong(searchedSongslist.get(choice - 1));
-                playSuccess = play.playSong(fileList.get(0), fileList.get(1));
-                play.playSong((String) fileList.get(0), (String) fileList.get(1));
+                } else {
+                    fileList = songsList.getFilesForSong(searchedSongslist.get(choice - 1));
+                    playSuccess = play.playSong(fileList.get(0), fileList.get(1));
+                }
+
             }
-            play.playSong((String)fileList.get(0), (String)fileList.get(1));
 
         }
 
 
     }
+
+    //function to print menu
+    public void printMenu(List<String> options, String menuType) {
+
+        //clear the screen before any menu
+        ClearScreen cls = new ClearScreen();
+        cls.ClearConsole();
+
+        //Welcome message
+        System.out.println("Welcome to Spotifoo music player!");
+        System.out.println();
+
+        int i = 1;
+        if (menuType.equalsIgnoreCase("mainMenu")) {
+            System.out.println("Main menu options:");
+            for (String option : options) {
+                System.out.println("[" + i + "]" + " " + option);
+                i++;
+            }
+        } else {
+            System.out.println(menuType);
+            for (String option : options) {
+                System.out.println("[" + i + "]" + " " + option);
+                i++;
+            }
+            System.out.println("[0] Go back to main menu");
+        }
+    }
+
 
 }
 
