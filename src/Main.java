@@ -4,6 +4,5 @@ public class Main {
         //Create object of menucontroller and initiate mainMenu
         MenuController application = new MenuController();
         application.mainMenu();
-        System.out.println("bye bye...");
     }
 }
