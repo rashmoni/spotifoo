@@ -1,6 +1,7 @@
 import java.io.*;
 import java.util.ArrayList;
 import java.util.Arrays;
+import java.util.List;
 import java.util.Scanner;
 
 public class ReadDataFromTextFile {
@@ -8,10 +9,10 @@ public class ReadDataFromTextFile {
     private static Scanner file;
     static int rows;
 
-    public ArrayList<ArrayList<String>> getData()  {
+    public List<List<String>> getData()  {
 
         //2d  array list for reading from file
-        ArrayList<ArrayList<String>> data = new ArrayList<>();
+        List<List<String>> data = new ArrayList<>();
 
 
         String path =System.getProperty("user.dir");
