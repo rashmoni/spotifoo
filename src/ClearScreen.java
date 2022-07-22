@@ -1,7 +1,7 @@
 
 public class ClearScreen{
 
-    public  void ClearConsole(){
+    public  void clearConsole(){
         try{
             String operatingSystem = System.getProperty("os.name"); //Check the current operating system
 
@@ -16,7 +16,8 @@ public class ClearScreen{
                 startProcess.waitFor();
             }
         }catch(Exception e){
-            System.out.println(e);
+            System.out.println("Error when clearing the screen "+ e);
+            Thread.currentThread().interrupt(); // Compliant solution as per Sonarqube
         }
     }
 }

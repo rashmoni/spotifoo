@@ -13,7 +13,7 @@ public class UserInput {
         boolean valid = false;
 
         //loop until user input valid value
-        while (valid==false){
+        while (!valid){
 
             //prompt user for input
             System.out.print(promptMsg);
