@@ -18,7 +18,8 @@ public class Application {
         mainMenuOptions.add("Genres");
         mainMenuOptions.add("Search");
 
-        //Display menu
+
+        //Print menu
         printMenu(mainMenuOptions, "mainMenu");
 
         //UserInput class to verify and get only valid user input
@@ -109,7 +110,7 @@ public class Application {
 
         if (choice != 0) {
             artistSongsOptionslist = artistsList.getSongs("artist", artistMenuOptionslist.get(choice - 1));
-            printMenu(artistSongsOptionslist, "artist available:");
+            printMenu(artistSongsOptionslist, "songs available:");
 
             //Assign user input to choice variable using the readInteger function
             choice = input.readInteger(CHOOSESONG,
@@ -164,7 +165,7 @@ public class Application {
 
         if (choice != 0) {
             albumsSongsOptionslist = albumsList.getSongs("albums", albumMenuOptionslist.get(choice - 1));
-            printMenu(albumsSongsOptionslist, "album available:");
+            printMenu(albumsSongsOptionslist, "songs available:");
             //Assign user input to choice variable using the readInteger function
             choice = input.readInteger(CHOOSESONG,
                     "Choose a valid album or enter 0 to go back", 0, albumsSongsOptionslist.size());
@@ -216,7 +217,7 @@ public class Application {
 
         if (choice != 0) {
             genresSongsOptionslist = genresList.getSongs("genres", genresMenuOptionslist.get(choice - 1));
-            printMenu(genresSongsOptionslist, "genre available:");
+            printMenu(genresSongsOptionslist, "songs available:");
             //Assign user input to choice variable using the readInteger function
             choice = input.readInteger(CHOOSESONG,
                     "Choose a valid genres or enter 0 to go back", 0, genresSongsOptionslist.size());
