@@ -20,7 +20,10 @@ public class PlaySong {
         try {
             //constructor of file class having file as argument
             File song = new File(pathToMp3);
+
+            //To get the file extention (.mp3)
             String fileExt = getFileExtension(song);
+
             File image = new File(pathToPng);
             File defaultImage = new File(pathToDefaultimage);
 
@@ -35,8 +38,6 @@ public class PlaySong {
                     desktop.open(defaultImage);
             }
         } catch (Exception e) {
-            System.out.println(ERROR_MSG);
-
         }
         return playsuccess;
     }
