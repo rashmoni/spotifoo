@@ -32,6 +32,7 @@ public class PlaySong {
                 desktop.open(song);
                 System.out.println("\u25B6 playing song..");
                 playsuccess = true;
+                Thread.sleep(1000);
                 if (image.exists()) {
                     desktop.open(image);
                 } else
