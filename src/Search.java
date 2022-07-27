@@ -2,9 +2,8 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class Search {
-
     public List<String> searchSongs() {
-        ClearScreen cls = new ClearScreen();
+        DisplayController cls = new DisplayController();
         cls.clearConsole();
         UserInput input = new UserInput();
 
