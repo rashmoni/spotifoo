@@ -2,10 +2,10 @@ import java.awt.*;
 import java.io.File;
 
 
-public class PlaySong {
+public class OpenSongImageFile {
 
     // This methods plays song and also displays the image
-    public boolean playSong(String mp3, String png) {
+    public boolean openMP3PNG(String mp3, String png) {
 
         boolean playsuccess = false;
         final String ERROR_MSG = "Not Supported";
