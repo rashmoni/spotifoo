@@ -42,7 +42,7 @@ public class UserInput {
         strInput = in.nextLine();
 
         while ((strInput.equals(" "))) {
-            System.out.print("\u26A0 Invalid Entry, Please enter valid search value");
+            System.out.print("\u26A0 Invalid Entry, Please enter valid search value :");
             strInput = in.nextLine();
         }
         return strInput;

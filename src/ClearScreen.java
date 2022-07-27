@@ -12,7 +12,6 @@ public class ClearScreen{
             } else {
                 ProcessBuilder pb = new ProcessBuilder("clear");
                 Process startProcess = pb.inheritIO().start();
-
                 startProcess.waitFor();
             }
         }catch(Exception e){
