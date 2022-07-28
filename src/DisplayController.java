@@ -26,11 +26,12 @@ public class DisplayController {
             System.out.println("[0] Go back to main menu");
         }
     }
-    public  void clearConsole(){
-        try{
+
+    public void clearConsole() {
+        try {
             String operatingSystem = System.getProperty("os.name"); //Check the current operating system
 
-            if(operatingSystem.contains("Windows")){
+            if (operatingSystem.contains("Windows")) {
                 ProcessBuilder pb = new ProcessBuilder("cmd", "/c", "cls");
                 Process startProcess = pb.inheritIO().start();
                 startProcess.waitFor();
@@ -39,8 +40,8 @@ public class DisplayController {
                 Process startProcess = pb.inheritIO().start();
                 startProcess.waitFor();
             }
-        }catch(Exception e){
-            System.out.println("Error when clearing the screen "+ e);
+        } catch (Exception e) {
+            System.out.println("Error when clearing the screen " + e);
             Thread.currentThread().interrupt(); // Compliant solution as per Sonarqube
         }
     }

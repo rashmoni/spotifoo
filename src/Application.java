@@ -4,7 +4,9 @@ import java.util.List;
 public class Application {
     DisplayController cls = new DisplayController();
     PlayController player = new PlayController();
+    GetItemsFromData itemObject = new GetItemsFromData();
     Boolean Exit = false;
+
     //main menu
     public void mainMenu() {
 
@@ -16,7 +18,7 @@ public class Application {
         mainMenuOptions.add("Genres");
         mainMenuOptions.add("Search");
 
-
+        // loop until Exit = true
         while (!Exit) {
             //Print menu
             cls.printMenu(mainMenuOptions, "mainMenu");
@@ -41,17 +43,14 @@ public class Application {
             }
         }
     }
-    public void songsMenu() {
 
-        GetItemsFromData itemObject = new GetItemsFromData();
+    public void songsMenu() {
         List<String> songlist = itemObject.getSongs();
         Exit = player.startPlay(songlist);
     }
+
     public void artistsMenu() {
-
-        GetItemsFromData itemObject = new GetItemsFromData();
         List<String> generalList = itemObject.getArtist();
-
         //Display artist menu
         cls.printMenu(generalList, "artist available:");
 
@@ -66,9 +65,8 @@ public class Application {
             Exit = player.startPlay(songList);
         }
     }
-    public void albumsMenu() {
 
-        GetItemsFromData itemObject = new GetItemsFromData();
+    public void albumsMenu() {
         List<String> generalList = itemObject.getAlbums();
 
         //Display album menu
@@ -85,10 +83,10 @@ public class Application {
             Exit = player.startPlay(songList);
         }
     }
-    public void genresMenu() {
 
-        GetItemsFromData itemObject = new GetItemsFromData();
+    public void genresMenu() {
         List<String> generalList = itemObject.getGenres();
+
         //Display menu
         cls.printMenu(generalList, "Genre available:");
 
@@ -103,9 +101,9 @@ public class Application {
             Exit = player.startPlay(songList);
         }
     }
+
     public void searchMenu() {
-        Search search1 = new Search();
-        List<String> songList = search1.searchSongs();
+        List<String> songList = itemObject.searchSongs();
         cls.printMenu(songList, "Search for a song:");
         Exit = player.startPlay(songList);
     }
