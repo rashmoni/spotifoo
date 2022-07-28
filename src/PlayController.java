@@ -6,6 +6,7 @@ public class PlayController {
     static final String CHOOSEVALIDSONG = "\u26A0 Choose a valid song or enter 0 to go back";
     Boolean Exit = false;
     DisplayController cls = new DisplayController();
+
     public boolean startPlay(List<String> songList) {
         GetItemsFromData itemObject = new GetItemsFromData();
 
@@ -35,6 +36,6 @@ public class PlayController {
                 }
             }
         }
-return Exit;
+        return Exit;
     }
 }

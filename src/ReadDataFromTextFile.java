@@ -1,25 +1,24 @@
-import java.io.*;
+import java.io.File;
+import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 import java.util.Scanner;
 
 public class ReadDataFromTextFile {
-
-    private static Scanner file;
     static int rows;
+    private static Scanner file;
 
-    public List<List<String>> getData()  {
+    public List<List<String>> getData() {
 
         //2d  array list for reading from file
         List<List<String>> data = new ArrayList<>();
 
-
-        String path =System.getProperty("user.dir");
+        String path = System.getProperty("user.dir");
 
         try {
-            file = new Scanner(new File(path+"//assets//data.txt"));
-        }catch(FileNotFoundException e){
+            file = new Scanner(new File(path + "//assets//data.txt"));
+        } catch (FileNotFoundException e) {
             System.out.println(e);
         }
 
@@ -38,8 +37,6 @@ public class ReadDataFromTextFile {
         return data;
 
     }
-
-
 }
 
 
