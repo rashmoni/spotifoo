@@ -38,4 +38,14 @@ public class PlayController {
         }
         return Exit;
     }
+
+
+    public boolean startPlay(String song) {
+        GetItemsFromData itemObject = new GetItemsFromData();
+            List<String> mp3png = itemObject.getFilesForSong(song);
+            OpenSongImageFile open = new OpenSongImageFile();
+            boolean playSuccess = open.openMP3PNG(mp3png.get(0), mp3png.get(1));
+            Exit = true;
+        return Exit;
+    }
 }

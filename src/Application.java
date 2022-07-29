@@ -17,6 +17,7 @@ public class Application {
         mainMenuOptions.add("Albums");
         mainMenuOptions.add("Genres");
         mainMenuOptions.add("Search");
+        mainMenuOptions.add("supSearch");
 
         // loop until Exit = true
         while (!Exit) {
@@ -27,7 +28,7 @@ public class Application {
             UserInput input = new UserInput();
 
             //Assign user input to choice variable using the readInteger function
-            int choice = input.readInteger("Choose an option and press enter: ", "\u26A0 Not a valid option", 1, 5);
+            int choice = input.readInteger("Choose an option and press enter: ", "\u26A0 Not a valid option", 1, 6);
 
             //To do after user selection
             if (choice == 1) {
@@ -40,7 +41,11 @@ public class Application {
                 genresMenu();
             } else if (choice == 5) {
                 searchMenu();
+            } else if (choice == 6) {
+                supSearch();
+
             }
+
         }
     }
 
@@ -106,6 +111,42 @@ public class Application {
         List<String> songList = itemObject.searchSongs();
         cls.printMenu(songList, "Search for a song:");
         Exit = player.startPlay(songList);
+    }
+
+    public void supSearch() {
+        SuperSearch sc1 = new SuperSearch();
+        List<String> allList = sc1.supSearch();
+        cls.supprintMenu(allList);
+        //UserInput class to verify and get only valid user input
+
+        for (int i= 0; i<allList.size();i++){
+            if (allList.get(i).toLowerCase().contains("songs")) {
+                allList.remove(allList.get(i));
+            } else if (allList.get(i).toLowerCase().contains("albums")) {
+                allList.remove(allList.get(i));
+            } else if (allList.get(i).toLowerCase().contains("genres")) {
+                allList.remove(allList.get(i));
+            } else if (allList.get(i).toLowerCase().contains("artists")) {
+                allList.remove(allList.get(i));
+            }
+        }
+
+        UserInput input = new UserInput();
+        //Assign user input to choice variable using the readInteger function
+        int choice = input.readInteger("Choose an option or enter 0 to go back:", "\u26A0 Choose a valid album or enter 0 to go back", 1, allList.size());
+
+        if(choice!=0){
+
+            String userChoise = allList.get(choice);
+
+            for (int i= 0; i<itemObject.getSongs().size();i++){
+                if (userChoise.equalsIgnoreCase(itemObject.getSongs().get(i))){
+                  Exit = player.startPlay(userChoise);
+                }
+            }
+
+        }
+
     }
 
 }

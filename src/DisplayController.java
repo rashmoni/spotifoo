@@ -45,4 +45,29 @@ public class DisplayController {
             Thread.currentThread().interrupt(); // Compliant solution as per Sonarqube
         }
     }
+
+    public void supprintMenu(List<String> options) {
+        //clear the screen before any menu
+        clearConsole();
+
+        //Welcome message
+        System.out.println("Welcome to Spotifoo music player!");
+        System.out.println();
+
+        int i = 1;
+
+        for (String option : options) {
+            if(option.equalsIgnoreCase("songs")){
+                System.out.println("songs: ");
+            } else if (option.equalsIgnoreCase("artists")) {
+                System.out.println("artists: ");
+            } else if (option.equalsIgnoreCase("albums")) {
+                System.out.println("Albums: ");
+            } else if (option.equalsIgnoreCase("genres")) {
+                System.out.println("Genres: ");
+            }else{
+            System.out.println("[" + i + "]" + " " + option);
+            i++;}
+        }
+    }
 }
